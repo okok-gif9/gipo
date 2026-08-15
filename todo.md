@@ -1,0 +1,22 @@
+# Project TODO
+
+- [ ] Define and document the approved product architecture, data model, UX flows, failure handling, and test strategy.
+- [ ] Build authenticated account experience for users of the web platform.
+- [ ] Build character creation, editing, deletion, and ownership management with name, description, and behavioral system prompt.
+- [ ] Support public and private character visibility, including safe discovery and ownership authorization.
+- [ ] Model role-playing stories with selectable player roles, evolving state, meaningful branches, and explicit story endings determined by player choices and messages.
+- [ ] Build restart and new-chat flows that preserve previous conversations while allowing a fresh story run.
+- [ ] Build web chat with real-time streamed Grok responses, robust pending/error states, and Markdown rendering.
+- [ ] Persist conversations and messages so each character conversation retains its full context and memory.
+- [ ] Securely store each user's Grok API key and Telegram bot token without revealing them in the browser.
+- [ ] Connect Grok through a server-side provider layer that injects the selected character, role, story state, and conversation history.
+- [ ] Support multiple independent conversations per user and character, with switching and creating new conversations.
+- [ ] Implement one-time-code linking between a user account and their Telegram account.
+- [ ] Route Telegram messages through the same character, conversation, story-state, and memory logic as the web chat.
+- [ ] Let users choose the active Telegram character and conversation from the web app.
+- [ ] Implement safe Telegram webhook registration and verification.
+- [ ] Deliver an optional follow-up message after a user-defined period of inactivity, with explicit opt-in and configurable delay.
+- [ ] Enable eligible contemporary/non-fictional characters to send Telegram stickers and GIFs while respecting character and story context.
+- [ ] Create an elegant, responsive, accessible visual system across character management, chat, story, Telegram, and settings pages.
+- [ ] Add Vitest coverage for data validation, access isolation, story lifecycle, provider payload construction, Telegram identity linking, and webhook authentication.
+- [ ] Verify critical web, streaming, and Telegram integration flows before delivery.
