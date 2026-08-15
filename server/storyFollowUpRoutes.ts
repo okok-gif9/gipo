@@ -5,6 +5,14 @@ import { decryptSetting } from "./settingsCrypto";
 import { sendTelegramText } from "./telegramProvider";
 import { sdk } from "./_core/sdk";
 
+export function shouldSendFollowUp(input: { isOptedIn: boolean; inactivityHours: number; lastInteractionAt: Date; lastFollowUpAt: Date | null; now?: number }) {
+  if (!input.isOptedIn) return false;
+  const cutoff = (input.now ?? Date.now()) - input.inactivityHours * 60 * 60 * 1000;
+  if (input.lastInteractionAt.getTime() > cutoff) return false;
+  if (input.lastFollowUpAt && input.lastFollowUpAt.getTime() >= input.lastInteractionAt.getTime()) return false;
+  return true;
+}
+
 export function registerStoryFollowUpRoutes(app: Express) {
   app.post("/api/scheduled/story-follow-up", async (req: Request, res: Response) => {
     try {
@@ -14,9 +22,7 @@ export function registerStoryFollowUpRoutes(app: Express) {
       if (!preference || !preference.isOptedIn) return res.json({ ok: true, skipped: "disabled-or-orphan" });
       const story = await db.getStoryRunById(preference.storyRunId);
       if (!story || story.run.status !== "active") return res.json({ ok: true, skipped: "run-not-active" });
-      const cutoff = Date.now() - preference.inactivityHours * 60 * 60 * 1000;
-      if (story.run.lastInteractionAt.getTime() > cutoff) return res.json({ ok: true, skipped: "recently-active" });
-      if (preference.lastFollowUpAt && preference.lastFollowUpAt.getTime() >= story.run.lastInteractionAt.getTime()) return res.json({ ok: true, skipped: "already-followed-up" });
+      if (!shouldSendFollowUp({ ...preference, lastInteractionAt: story.run.lastInteractionAt })) return res.json({ ok: true, skipped: "not-due" });
       const [link, settings] = await Promise.all([db.getTelegramLinkByUserId(story.run.participantId), db.getIntegrationSettings(story.run.participantId)]);
       if (!link?.telegramChatId || !settings?.grokApiKeyCiphertext || !settings.telegramBotTokenCiphertext) return res.json({ ok: true, skipped: "integration-unavailable" });
       const apiKey = decryptSetting(settings.grokApiKeyCiphertext);

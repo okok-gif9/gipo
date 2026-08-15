@@ -14,6 +14,7 @@ import {
 } from "../drizzle/schema";
 import { ENV } from "./_core/env";
 import type { StoryBotInput } from "./storySchemas";
+import { persistStoryRunState } from "./storyRunPersistence";
 
 let _db: ReturnType<typeof drizzle> | null = null;
 
@@ -257,10 +258,7 @@ export async function updateStoryRunState(input: {
 }) {
   const db = await requireDb();
   const { storyRunId, ...changes } = input;
-  await db
-    .update(storyRuns)
-    .set({ ...changes, updatedAt: new Date(), lastInteractionAt: new Date() })
-    .where(eq(storyRuns.id, storyRunId));
+  await persistStoryRunState({ db, table: storyRuns, storyRunId, changes, whereStoryRunId: id => eq(storyRuns.id, id) });
 }
 
 export async function getIntegrationSettings(userId: number) {

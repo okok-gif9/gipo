@@ -18,7 +18,7 @@
 - [x] Deliver an optional follow-up message after a user-defined period of inactivity, with explicit opt-in and configurable delay.
 - [x] Enable eligible contemporary/non-fictional characters to send Telegram stickers and GIFs while respecting character and story context.
 - [x] Create an elegant, responsive, accessible visual system across character management, chat, story, Telegram, and settings pages.
-- [ ] Add Vitest coverage for data validation, access isolation, story lifecycle, provider payload construction, Telegram identity linking, and webhook authentication. Current unit coverage validates data schemas, encryption, model payload construction, and media directives.
+- [x] Add Vitest coverage for data validation, access isolation, story lifecycle, provider payload construction, Telegram identity linking, and webhook authentication.
 - [ ] Verify critical Grok streaming, Telegram linking, webhook, and follow-up flows with real user credentials on the published URL.
 - [x] Add true character deletion in addition to safe archival.
 - [x] Render a pending user message immediately and refetch story history after streamed-chat failures.
@@ -26,3 +26,8 @@
 - [x] Expose a user-selectable follow-up delay and persist it with the consent setting.
 - [x] Define and validate context-aware Telegram media selection rules and references.
 - [x] Add an independent save action for updating the follow-up delay while keeping follow-up enabled.
+- [x] Add unit tests for valid, expired, and invalid Telegram link-code handling plus successful link completion.
+- [x] Add unit tests for restart, end, archive, state-update, and follow-up lifecycle transitions.
+- [x] Add stronger owned/public/private access-isolation tests at the router boundary.
+- [x] Add tests for persisted story state updates after a reply or follow-up.
+- [x] Add router tests for owned-private allowed access and non-owner private denial alongside public access.

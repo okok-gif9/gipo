@@ -1,10 +1,12 @@
-import { createHash } from "node:crypto";
+import { timingSafeEqual } from "node:crypto";
 import type { Express, Request, Response } from "express";
 import { z } from "zod";
 import * as db from "./db";
 import { buildStoryMessages, consumeGrokStream, requestGrokStream, resolveStoryState } from "./grokStoryProvider";
 import { decryptSetting } from "./settingsCrypto";
 import { extractTelegramMediaDirective, sendTelegramMedia, sendTelegramText } from "./telegramProvider";
+import { hashTelegramLinkCode } from "./telegramIdentity";
+import { resolveTelegramStart } from "./telegramLinking";
 
 const updateSchema = z.object({
   update_id: z.number().int(),
@@ -15,7 +17,10 @@ const updateSchema = z.object({
   }).optional(),
 });
 
-const codeHash = (value: string) => createHash("sha256").update(value, "utf8").digest("hex");
+export function isValidTelegramWebhookSecret(received: string | undefined, expected: string) {
+  if (!received || received.length !== expected.length) return false;
+  return timingSafeEqual(Buffer.from(received), Buffer.from(expected));
+}
 
 async function runTelegramStoryTurn(input: { ownerId: number; storyRunId: number; chatId: string; text: string; token: string }) {
   const story = await db.getStoryRunForParticipant(input.ownerId, input.storyRunId);
@@ -49,18 +54,22 @@ export function registerTelegramWebhookRoutes(app: Express) {
       const settings = await db.getIntegrationSettings(ownerId);
       if (!settings?.telegramBotTokenCiphertext || !settings.telegramWebhookSecretCiphertext) return res.status(404).json({ error: { code: "NOT_FOUND", message: "Bot configuration not found." } });
       const expectedSecret = decryptSetting(settings.telegramWebhookSecretCiphertext);
-      if (req.header("x-telegram-bot-api-secret-token") !== expectedSecret) return res.status(401).json({ error: { code: "UNAUTHORIZED", message: "Invalid webhook signature." } });
+      if (!isValidTelegramWebhookSecret(req.header("x-telegram-bot-api-secret-token"), expectedSecret)) return res.status(401).json({ error: { code: "UNAUTHORIZED", message: "Invalid webhook signature." } });
       const update = updateSchema.parse(req.body);
       if (!(await db.markTelegramUpdateProcessed(String(update.update_id)))) return res.json({ ok: true, duplicate: true });
       const text = update.message?.text?.trim(); const telegramUserId = update.message?.from?.id; const chatId = update.message?.chat.id;
       if (!text || !telegramUserId || !chatId) return res.json({ ok: true, ignored: true });
       const token = decryptSetting(settings.telegramBotTokenCiphertext);
       if (text.startsWith("/start")) {
-        const code = text.split(/\s+/)[1];
-        if (!code) { await sendTelegramText(token, String(chatId), "کد پیوند را از بخش تنظیمات سایت دریافت کنید و آن را مانند ‎/start CODE‎ بفرستید."); return res.json({ ok: true }); }
-        const pending = await db.getTelegramLinkByCodeHash(codeHash(code));
-        if (!pending || !pending.linkCodeExpiresAt || pending.linkCodeExpiresAt.getTime() < Date.now()) { await sendTelegramText(token, String(chatId), "این کد معتبر نیست یا منقضی شده است. از سایت یک کد تازه بسازید."); return res.json({ ok: true }); }
-        await db.completeTelegramLink({ userId: pending.userId, telegramUserId: String(telegramUserId), telegramChatId: String(chatId) });
+        const result = await resolveTelegramStart({
+          code: text.split(/\s+/)[1],
+          telegramUserId: String(telegramUserId),
+          telegramChatId: String(chatId),
+          getPending: db.getTelegramLinkByCodeHash,
+          complete: db.completeTelegramLink,
+        });
+        if (result.status === "missing") { await sendTelegramText(token, String(chatId), "کد پیوند را از بخش تنظیمات سایت دریافت کنید و آن را مانند ‎/start CODE‎ بفرستید."); return res.json({ ok: true }); }
+        if (result.status === "invalid") { await sendTelegramText(token, String(chatId), "این کد معتبر نیست یا منقضی شده است. از سایت یک کد تازه بسازید."); return res.json({ ok: true }); }
         await sendTelegramText(token, String(chatId), "حساب شما با موفقیت پیوند شد. اکنون از سایت یک داستان فعال را برای تلگرام انتخاب کنید.");
         return res.json({ ok: true });
       }

@@ -13,6 +13,10 @@ import { sdk } from "./_core/sdk";
 
 const bodySchema = z.object({ content: z.string().trim().min(1).max(6_000) });
 
+export function isStoryRunActive(status: string) {
+  return status === "active";
+}
+
 function sendEvent(res: Response, event: string, data: unknown) {
   res.write(`event: ${event}\ndata: ${JSON.stringify(data)}\n\n`);
 }
@@ -43,7 +47,7 @@ export function registerStoryChatRoutes(app: Express) {
       const input = bodySchema.parse(req.body);
       const story = await db.getStoryRunForParticipant(user.id, storyRunId);
       if (!story) return res.status(404).json({ error: { code: "NOT_FOUND", message: "Story run not found." } });
-      if (story.run.status !== "active") {
+      if (!isStoryRunActive(story.run.status)) {
         return res.status(409).json({ error: { code: "STORY_ENDED", message: "This story has ended. Restart it to take a new path." } });
       }
       const settings = await db.getIntegrationSettings(user.id);

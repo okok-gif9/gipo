@@ -1,4 +1,4 @@
-import { createHash, randomBytes } from "node:crypto";
+import { randomBytes } from "node:crypto";
 import { TRPCError } from "@trpc/server";
 import { parse as parseCookie } from "cookie";
 import { z } from "zod";
@@ -6,13 +6,10 @@ import * as db from "../db";
 import { decryptSetting, encryptSetting } from "../settingsCrypto";
 import { followUpPreferenceInput, integrationSettingsInput } from "../storySchemas";
 import { setTelegramWebhook } from "../telegramProvider";
+import { hashTelegramLinkCode } from "../telegramIdentity";
 import { protectedProcedure, router } from "../_core/trpc";
 import { COOKIE_NAME } from "../../shared/const";
 import { createHeartbeatJob, deleteHeartbeatJob, updateHeartbeatJob } from "../_core/heartbeat";
-
-function hashLinkCode(value: string) {
-  return createHash("sha256").update(value, "utf8").digest("hex");
-}
 
 export const integrationRouter = router({
   status: protectedProcedure.query(async ({ ctx }) => {
@@ -47,7 +44,7 @@ export const integrationRouter = router({
     }
     const code = randomBytes(9).toString("base64url");
     const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
-    await db.upsertTelegramLinkCode(ctx.user.id, hashLinkCode(code), expiresAt);
+    await db.upsertTelegramLinkCode(ctx.user.id, hashTelegramLinkCode(code), expiresAt);
     return { code, expiresAt };
   }),
   activateTelegramWebhook: protectedProcedure.mutation(async ({ ctx }) => {
