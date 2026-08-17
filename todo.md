@@ -37,3 +37,6 @@
 - [x] Apply page-specific editorial archive redesigns to character management, story chat, settings, and editor pages.
 - [x] Verify and refine light and dark themes across all primary pages.
 - [x] Capture and review dark-theme behavior for the character library and story chat pages.
+- [x] Replace the product name «قصه‌گو» with «گیپو» throughout the user interface, page metadata, and project-visible configuration.
+- [x] Create one shared client-facing product identity source and consume it in visible brand surfaces and page metadata.
+- [x] Search all application source files and verify no old user-facing product name remains after the rename.

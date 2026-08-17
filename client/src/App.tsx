@@ -1,6 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Route, Switch } from "wouter";
+import { useEffect } from "react";
 import DashboardLayout from "./components/DashboardLayout";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -10,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import Overview from "./pages/Overview";
 import SettingsPage from "./pages/SettingsPage";
 import StoryChatPage from "./pages/StoryChatPage";
+import { productIdentity } from "./lib/productIdentity";
 
 function Router() {
   return <DashboardLayout><Switch>
@@ -26,5 +28,6 @@ function Router() {
 }
 
 export default function App() {
+  useEffect(() => { document.title = `${productIdentity.name} — ${productIdentity.descriptor}`; }, []);
   return <ErrorBoundary><ThemeProvider defaultTheme="light" switchable><TooltipProvider><Toaster richColors /><Router /></TooltipProvider></ThemeProvider></ErrorBoundary>;
 }
