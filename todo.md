@@ -40,3 +40,6 @@
 - [x] Replace the product name «قصه‌گو» with «گیپو» throughout the user interface, page metadata, and project-visible configuration.
 - [x] Create one shared client-facing product identity source and consume it in visible brand surfaces and page metadata.
 - [x] Search all application source files and verify no old user-facing product name remains after the rename.
+- [ ] Diagnose the stale published deployment and eliminate any project-side cause preventing the latest گیپو checkpoint from serving at the custom domain.
+- [ ] Add a visible deployment identity marker sourced from code and verify that the public domain serves it after the latest checkpoint.
+- [ ] Document the observed publication-propagation behavior and the result of the repeat validation.
