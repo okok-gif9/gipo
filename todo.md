@@ -43,4 +43,4 @@
 - [ ] Diagnose the stale published deployment and eliminate any project-side cause preventing the latest گیپو checkpoint from serving at the custom domain.
 - [ ] Add a visible deployment identity marker sourced from code and verify that the public domain serves it after the latest checkpoint.
 - [ ] Document the observed publication-propagation behavior and the result of the repeat validation.
-- [ ] Export the current گیپو project to a new private GitHub repository and verify the pushed default branch.
+- [x] Export the current گیپو project to a new private GitHub repository and verify the pushed default branch.
