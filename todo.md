@@ -31,3 +31,9 @@
 - [x] Add stronger owned/public/private access-isolation tests at the router boundary.
 - [x] Add tests for persisted story state updates after a reply or follow-up.
 - [x] Add router tests for owned-private allowed access and non-owner private denial alongside public access.
+- [x] Redesign the visual system and page layouts to replace the current dense, generic dark dashboard presentation.
+- [ ] Diagnose and resolve the published application's paused/limited state and loading-shell issue before repeating live integration tests.
+- [x] Rebuild the interface around the approved contemporary editorial archive direction, with complete light and dark themes plus a user-controlled theme switch.
+- [x] Apply page-specific editorial archive redesigns to character management, story chat, settings, and editor pages.
+- [x] Verify and refine light and dark themes across all primary pages.
+- [x] Capture and review dark-theme behavior for the character library and story chat pages.
