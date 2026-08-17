@@ -12,6 +12,7 @@ import Overview from "./pages/Overview";
 import SettingsPage from "./pages/SettingsPage";
 import StoryChatPage from "./pages/StoryChatPage";
 import { productIdentity } from "./lib/productIdentity";
+import SupabasePagesApp from "./pages/SupabasePagesApp";
 
 function Router() {
   return <DashboardLayout><Switch>
@@ -29,5 +30,6 @@ function Router() {
 
 export default function App() {
   useEffect(() => { document.title = `${productIdentity.name} — ${productIdentity.descriptor}`; }, []);
+  if (import.meta.env.VITE_DEPLOY_TARGET === "github-pages") return <ErrorBoundary><ThemeProvider defaultTheme="light" switchable><TooltipProvider><Toaster richColors /><SupabasePagesApp /></TooltipProvider></ThemeProvider></ErrorBoundary>;
   return <ErrorBoundary><ThemeProvider defaultTheme="light" switchable><TooltipProvider><Toaster richColors /><Router /></TooltipProvider></ThemeProvider></ErrorBoundary>;
 }

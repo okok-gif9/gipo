@@ -44,3 +44,11 @@
 - [ ] Add a visible deployment identity marker sourced from code and verify that the public domain serves it after the latest checkpoint.
 - [ ] Document the observed publication-propagation behavior and the result of the repeat validation.
 - [x] Export the current گیپو project to a new private GitHub repository and verify the pushed default branch.
+- [ ] Evaluate a GitHub Pages-compatible deployment topology that preserves the backend-only Grok, Telegram webhook, and follow-up capabilities.
+- [ ] Connect the project data layer to a user-owned Supabase project and validate the required database schema and access policies.
+- [x] Create and configure a dedicated Supabase project named gipo for the GitHub Pages deployment path.
+- [ ] Migrate the current server-side Grok, Telegram, memory, and follow-up capabilities to Supabase-managed functions and database services.
+- [ ] Configure a GitHub Pages build and publication workflow for the Gipo frontend.
+- [x] Add a Supabase-backed static application shell with authentication and story-bot data access for the GitHub Pages build.
+- [ ] Add executable live validation for required Supabase tables and RLS behavior, including authorized and unauthorized access paths.
+- [ ] Document the current limited Supabase data-layer scope and complete the remaining data access needed for full capability parity.
