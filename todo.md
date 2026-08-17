@@ -49,6 +49,7 @@
 - [x] Create and configure a dedicated Supabase project named gipo for the GitHub Pages deployment path.
 - [ ] Migrate the current server-side Grok, Telegram, memory, and follow-up capabilities to Supabase-managed functions and database services.
 - [ ] Configure a GitHub Pages build and publication workflow for the Gipo frontend.
+- [ ] Enable GitHub Pages with the GitHub Actions source using an account credential permitted to administer Pages and Actions secrets for this private repository.
 - [x] Add a Supabase-backed static application shell with authentication and story-bot data access for the GitHub Pages build.
 - [ ] Add executable live validation for required Supabase tables and RLS behavior, including authorized and unauthorized access paths.
 - [ ] Document the current limited Supabase data-layer scope and complete the remaining data access needed for full capability parity.
