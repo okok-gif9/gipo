@@ -48,8 +48,10 @@
 - [ ] Connect the project data layer to a user-owned Supabase project and validate the required database schema and access policies.
 - [x] Create and configure a dedicated Supabase project named gipo for the GitHub Pages deployment path.
 - [ ] Migrate the current server-side Grok, Telegram, memory, and follow-up capabilities to Supabase-managed functions and database services.
-- [ ] Configure a GitHub Pages build and publication workflow for the Gipo frontend.
-- [ ] Enable GitHub Pages with the GitHub Actions source using an account credential permitted to administer Pages and Actions secrets for this private repository.
+- [x] Configure a GitHub Pages build and publication workflow for the Gipo frontend.
+- [x] Enable GitHub Pages with the GitHub Actions source in the user-approved public destination repository after configuring the required Supabase build secrets.
 - [x] Add a Supabase-backed static application shell with authentication and story-bot data access for the GitHub Pages build.
+- [x] Create the independent repository `okok-gif9/gipo`, publish the code there, and verify the public GitHub Pages site at `https://okok-gif9.github.io/gipo/`.
+- [x] Add `https://okok-gif9.github.io/gipo/` to the allowed Supabase Auth redirect URLs.
 - [ ] Add executable live validation for required Supabase tables and RLS behavior, including authorized and unauthorized access paths.
 - [ ] Document the current limited Supabase data-layer scope and complete the remaining data access needed for full capability parity.
