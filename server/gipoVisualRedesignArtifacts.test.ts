@@ -1,0 +1,20 @@
+import { describe, expect, it } from "vitest";
+
+describe("GIPO reference-informed visual shell", () => {
+  it("keeps the independent narrative shell and accessible motion safeguards in source", async () => {
+    const fs = await import("node:fs/promises");
+    const pagesApp = await fs.readFile(new URL("../client/src/pages/SupabasePagesApp.tsx", import.meta.url), "utf8");
+    const styles = await fs.readFile(new URL("../client/src/index.css", import.meta.url), "utf8");
+    const html = await fs.readFile(new URL("../client/index.html", import.meta.url), "utf8");
+
+    expect(pagesApp).toContain("function GipoSideNav");
+    expect(pagesApp).toContain("function GipoDashboard");
+    expect(pagesApp).toContain("function GipoChat");
+    expect(pagesApp).toContain("useReducedMotion");
+    expect(pagesApp).not.toContain("Sparkles");
+    expect(styles).toContain(".gipo-side-nav");
+    expect(styles).toContain(".gipo-mobile-nav");
+    expect(styles).toContain("prefers-reduced-motion");
+    expect(html).toContain("gipo-logo-mark_879cdc07.png");
+  });
+});
