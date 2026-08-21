@@ -37,3 +37,24 @@ export async function saveGrokSettings(input: { accessToken: string; grokApiKey?
   if (!response.ok) throw new Error(await message(response));
   return response.json() as Promise<{ grokConfigured: boolean; grokModel: string; telegramConfigured?: boolean }>;
 }
+
+export async function manageAccountDeletion(input: { accessToken: string; action: "request_deletion" | "cancel_deletion"; confirmation?: string }) {
+  const response = await fetch(endpoint("account-management"), {
+    method: "POST",
+    headers: { Authorization: `Bearer ${input.accessToken}`, apikey: anonKey ?? "", "Content-Type": "application/json" },
+    body: JSON.stringify({ action: input.action, confirmation: input.confirmation }),
+  });
+  if (!response.ok) throw new Error(await message(response));
+  return response.json() as Promise<{ status: "active" | "deletion_pending"; deletionEffectiveAt?: string }>;
+}
+
+export async function checkPublicHandle(handle: string) {
+  const response = await fetch(endpoint("public-handle-availability"), {
+    method: "POST",
+    headers: { apikey: anonKey ?? "", "Content-Type": "application/json" },
+    body: JSON.stringify({ handle }),
+  });
+  if (response.status === 422) return { available: false, reason: "INVALID_HANDLE" as const };
+  if (!response.ok) throw new Error(await message(response));
+  return response.json() as Promise<{ available: boolean }>;
+}

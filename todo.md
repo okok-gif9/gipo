@@ -62,20 +62,26 @@
 - [x] Add `https://okok-gif9.github.io/gipo/` to the allowed Supabase Auth redirect URLs.
 - [ ] Add executable live validation for required Supabase tables and RLS behavior, including authorized and unauthorized access paths.
 - [ ] Document the current limited Supabase data-layer scope and complete the remaining data access needed for full capability parity.
-- [ ] Design and implement first-email-login onboarding with optional display name, preferred language, interface theme, and content preferences.
-- [ ] Add a persistent user profile and editable role-play persona that can be selectively included in future story context.
-- [ ] Add explicit, always-visible «بدون محتوای +۱۸» policy copy and a 16+ age-gate acknowledgement before account personalization is saved.
-- [ ] Add Persian/English localization with user-selectable language and appropriate RTL/LTR layout switching.
-- [ ] Add user-selectable system, light, and dark themes plus the two user-provided background choices in application settings.
+- [x] Design and implement first-email-login onboarding with optional display name, preferred language, interface theme, and content preferences.
+- [x] Add a persistent user profile and editable role-play persona that can be selectively included in future story context.
+- [x] Add explicit, always-visible «بدون محتوای +۱۸» policy copy and a 16+ age-gate acknowledgement before account personalization is saved.
+- [x] Add Persian/English localization with user-selectable language and appropriate RTL/LTR layout switching.
+- [x] Add user-selectable system, light, and dark themes plus the two user-provided background choices in application settings.
 - [ ] Add supported avatar/cover image selection and configurable background choices for user-created story bots without exposing file bytes in the database.
 - [ ] Expand the bot creation experience so every signed-in user can define a public or private AI chat bot, its narrative, image, persona rules, and appearance.
 - [ ] Design and implement a role-protected admin panel for managing approved AI model configurations and encrypted provider credentials.
 - [ ] Design a lawful, original wizarding-school progression experience that uses no downloaded Harry Potter book text, official imagery, or unlicensed adaptations.
 - [ ] Complete Vault and pg_cron activation for the deployed follow-up dispatcher, then validate safe scheduling without sending unsolicited test messages.
-- [ ] Replace magic-link-only entry with explicit sign-up and sign-in flows using Supabase email/password authentication.
-- [ ] Require display name, unique public handle, email, password, and matching password confirmation during account registration.
-- [ ] Add available-handle validation with case-normalized uniqueness and clear recovery-friendly authentication errors.
-- [ ] Add a client-side strong-password generator, strength guidance, visibility toggle, and copy action without persisting generated passwords outside the authentication request.
-- [ ] Require successful email confirmation before a newly registered account can complete onboarding or create content.
+- [x] Replace magic-link-only entry with explicit sign-up and sign-in flows using Supabase email/password authentication.
+- [x] Require display name, unique public handle, email, password, and matching password confirmation during account registration.
+- [x] Add available-handle validation with case-normalized uniqueness and clear recovery-friendly authentication errors.
+- [x] Add a client-side strong-password generator, strength guidance, visibility toggle, and copy action without persisting generated passwords outside the authentication request.
+- [x] Require successful email confirmation before a newly registered account can complete onboarding or create content.
 - [ ] Add an account settings area for profile identity, email and password changes, privacy, notification preferences, language, theme, backgrounds, and sign-out controls.
 - [ ] Add secure account deletion with explicit confirmation, a 14-day cancellation window, sign-out, and documented treatment of associated stories, integrations, and personal data.
+- [x] Inject the saved persona into new story-run creation and/or the Grok story-turn prompt when persona inclusion is enabled, with tests proving it reaches model context.
+- [x] Complete end-to-end Persian/English localization for the GitHub Pages shell by replacing remaining hardcoded Persian strings with locale-driven copy and validating RTL/LTR behavior across account and onboarding screens.
+- [x] Replace the temporary DOM-based English text rewrite with structured locale-copy rendering and automated Persian/English UI coverage for account, onboarding, and settings screens.
+- [ ] Refactor remaining localized copy in shared account controls, including password aria labels, clipboard messages, placeholders, confirmation text, and account/settings notices.
+- [ ] Add rendered UI tests for Persian and English auth, onboarding, and account settings, including key visible text and RTL/LTR direction assertions.
+- [ ] Run and document signed-out and signed-in browser validation of the GitHub Pages shell in both Persian and English after the i18n refactor.
