@@ -85,3 +85,12 @@
 - [ ] Refactor remaining localized copy in shared account controls, including password aria labels, clipboard messages, placeholders, confirmation text, and account/settings notices.
 - [ ] Add rendered UI tests for Persian and English auth, onboarding, and account settings, including key visible text and RTL/LTR direction assertions.
 - [ ] Run and document signed-out and signed-in browser validation of the GitHub Pages shell in both Persian and English after the i18n refactor.
+- [ ] Research the current public visual language of Emochi and translate only high-level interaction and mood principles into an independent GIPO design direction.
+- [ ] Design and validate an original scalable GIPO logo mark, favicon, and app-icon treatment that do not reproduce Emochi branding or assets.
+- [ ] Redesign the GitHub Pages authentication, onboarding, archive, chat, and settings surfaces with the approved friendly character-first visual system.
+- [ ] Validate the responsive light/dark rendering, Persian RTL and English LTR modes, accessibility contrast, and build output after the visual redesign.
+- [ ] Implement the approved reference-informed information architecture: compact side navigation, concise top header, scrollable category filters, character discovery grid, and framed conversation layout—without copying Emochi assets, copy, color system, or trademarks.
+- [ ] Apply the approved two-mode visual system: restrained paper-planet light mode and lantern-library dark mode, with an adult editorial character rather than a cartoon or child-oriented appearance.
+- [ ] Exclude generic AI iconography, robot motifs, sparkle-heavy decoration, and childish visual cues from the GIPO logo and product surfaces.
+- [ ] Curate a concise, license-compatible icon and motion-asset system from reputable sources; map each product action to one meaningful icon and avoid duplicated or ornamental controls.
+- [ ] Apply restrained, accessible ready-made visual effects and motion primitives only where they clarify navigation, status, or story progress, with reduced-motion support.
