@@ -32,8 +32,8 @@ export async function streamStoryTurn(input: { accessToken: string; storyRunId: 
   }
   const event = parseEvent(buffer); if (event) input.onEvent(event);
 }
-export async function saveGrokSettings(input: { accessToken: string; grokApiKey?: string; grokModel?: string }) {
-  const response = await fetch(endpoint("save-integrations"), { method: "POST", headers: { Authorization: `Bearer ${input.accessToken}`, apikey: anonKey ?? "", "Content-Type": "application/json" }, body: JSON.stringify({ grokApiKey: input.grokApiKey, grokModel: input.grokModel }) });
+export async function saveGrokSettings(input: { accessToken: string; grokApiKey?: string; grokModel?: string; telegramBotToken?: string; telegramWebhookSecret?: string }) {
+  const response = await fetch(endpoint("save-integrations"), { method: "POST", headers: { Authorization: `Bearer ${input.accessToken}`, apikey: anonKey ?? "", "Content-Type": "application/json" }, body: JSON.stringify({ grokApiKey: input.grokApiKey, grokModel: input.grokModel, telegramBotToken: input.telegramBotToken, telegramWebhookSecret: input.telegramWebhookSecret }) });
   if (!response.ok) throw new Error(await message(response));
-  return response.json() as Promise<{ grokConfigured: boolean; grokModel: string }>;
+  return response.json() as Promise<{ grokConfigured: boolean; grokModel: string; telegramConfigured?: boolean }>;
 }
