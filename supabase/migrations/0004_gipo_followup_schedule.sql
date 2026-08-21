@@ -3,6 +3,9 @@
 --   gipo_project_url: https://<project-ref>.supabase.co
 --   gipo_schedule_secret: the value of the GIPO_SCHEDULE_SECRET Edge Function secret
 
+create extension if not exists pg_cron;
+create extension if not exists pg_net with schema extensions;
+
 select cron.schedule(
   'gipo-follow-up-dispatch',
   '*/30 * * * *',

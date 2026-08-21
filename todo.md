@@ -71,7 +71,7 @@
 - [ ] Expand the bot creation experience so every signed-in user can define a public or private AI chat bot, its narrative, image, persona rules, and appearance.
 - [ ] Design and implement a role-protected admin panel for managing approved AI model configurations and encrypted provider credentials.
 - [ ] Design a lawful, original wizarding-school progression experience that uses no downloaded Harry Potter book text, official imagery, or unlicensed adaptations.
-- [ ] Complete Vault and pg_cron activation for the deployed follow-up dispatcher, then validate safe scheduling without sending unsolicited test messages.
+- [x] Complete Vault and pg_cron activation for the deployed follow-up dispatcher, then validate safe scheduling without sending unsolicited test messages.
 - [x] Replace magic-link-only entry with explicit sign-up and sign-in flows using Supabase email/password authentication.
 - [x] Require display name, unique public handle, email, password, and matching password confirmation during account registration.
 - [x] Add available-handle validation with case-normalized uniqueness and clear recovery-friendly authentication errors.
