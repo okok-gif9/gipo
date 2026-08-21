@@ -1,0 +1,18 @@
+{
+  "name": "گیپو — آرشیو روایت",
+  "short_name": "گیپو",
+  "description": "روایت‌های نقش‌آفرینی با حافظهٔ پیوسته.",
+  "lang": "fa",
+  "dir": "rtl",
+  "display": "standalone",
+  "background_color": "#f4efe3",
+  "theme_color": "#0b2239",
+  "icons": [
+    {
+      "src": "/manus-storage/gipo-open-frame-favicon_76319d8c.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

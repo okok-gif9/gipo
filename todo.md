@@ -86,11 +86,11 @@
 - [ ] Add rendered UI tests for Persian and English auth, onboarding, and account settings, including key visible text and RTL/LTR direction assertions.
 - [ ] Run and document signed-out and signed-in browser validation of the GitHub Pages shell in both Persian and English after the i18n refactor.
 - [x] Research the current public visual language of Emochi and translate only high-level interaction and mood principles into an independent GIPO design direction.
-- [ ] Finish the GIPO brand asset treatment by integrating a verified final logo asset into favicon/app-icon surfaces and document the validation outcome.
+- [x] Finish the GIPO brand asset treatment by integrating a verified final logo asset into favicon/app-icon surfaces and document the validation outcome.
 - [ ] Redesign the GitHub Pages authentication, onboarding, archive, chat, and settings surfaces with the approved friendly character-first visual system.
 - [ ] Validate the responsive light/dark rendering, Persian RTL and English LTR modes, accessibility contrast, and build output after the visual redesign.
 - [x] Implement the approved reference-informed information architecture: compact side navigation, concise top header, scrollable category filters, character discovery grid, and framed conversation layout—without copying Emochi assets, copy, color system, or trademarks.
 - [x] Apply the approved two-mode visual system: restrained paper-planet light mode and lantern-library dark mode, with an adult editorial character rather than a cartoon or child-oriented appearance.
-- [ ] Remove decorative generic AI/sparkle motifs and audit the visible product-icon vocabulary for adult editorial use.
-- [ ] Audit icon usage across authentication, onboarding, dashboard, chat, and settings so each action has one purposeful Lucide icon and ornamental duplicates are removed.
-- [ ] Add explicit reduced-motion handling for Motion components and re-verify the redesigned shell.
+- [x] Remove decorative generic AI/sparkle motifs and audit the visible product-icon vocabulary for adult editorial use.
+- [x] Audit icon usage across authentication, onboarding, dashboard, chat, and settings so each action has one purposeful Lucide icon and ornamental duplicates are removed.
+- [x] Apply reduced-motion guards to every Motion surface, including side-nav tap feedback, then rerun verification.
