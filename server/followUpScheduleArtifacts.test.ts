@@ -14,4 +14,15 @@ describe("GIPO follow-up scheduler artifacts", () => {
     expect(dispatcher).toContain("claim_due_follow_ups");
     expect(dispatcher).toContain("x-gipo-schedule-secret");
   });
+
+  it("keeps authenticated table privileges explicit and constrained by RLS", async () => {
+    const fs = await import("node:fs/promises");
+    const migration = await fs.readFile(new URL("../supabase/migrations/0007_gipo_authenticated_table_privileges.sql", import.meta.url), "utf8");
+
+    expect(migration).toContain("grant usage on schema public to authenticated");
+    expect(migration).toContain("grant select, insert, update, delete on table");
+    expect(migration).toContain("public.profiles");
+    expect(migration).toContain("public.integration_settings");
+    expect(migration).not.toContain("to anon");
+  });
 });
