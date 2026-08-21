@@ -48,8 +48,11 @@
 - [ ] Connect the project data layer to a user-owned Supabase project and validate the required database schema and access policies.
 - [x] Create and configure a dedicated Supabase project named gipo for the GitHub Pages deployment path.
 - [ ] Migrate the current server-side Grok, Telegram, memory, and follow-up capabilities to Supabase-managed functions and database services.
-- [ ] Define and document Supabase Edge Function contracts, authorization rules, secret boundaries, and rollout order for Grok chat, Telegram updates, and follow-ups.
+- [x] Define and document Supabase Edge Function contracts, authorization rules, secret boundaries, and rollout order for Grok chat, Telegram updates, and follow-ups.
 - [ ] Implement authenticated Grok story-turn execution backed by Supabase runs and messages, without exposing user API keys in GitHub Pages.
+- [ ] Commit reproducible source for `story-turn`, `save-integrations`, and their shared Edge Function helpers to the GitHub repository.
+- [ ] Run and document a signed-in end-to-end story-turn validation with a stored Grok key, streamed output, and persisted user/assistant messages.
+- [ ] Add executable RLS and access-path validation for the tables used by story-turn and verify the Pages client against the committed implementation.
 - [ ] Implement Telegram webhook ingestion and idempotent shared-memory updates in Supabase.
 - [ ] Implement opt-in follow-up dispatch with durable scheduling and retry-safe delivery semantics.
 - [x] Configure a GitHub Pages build and publication workflow for the Gipo frontend.
