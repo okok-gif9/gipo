@@ -94,4 +94,7 @@
 - [x] Remove decorative generic AI/sparkle motifs and audit the visible product-icon vocabulary for adult editorial use.
 - [x] Audit icon usage across authentication, onboarding, dashboard, chat, and settings so each action has one purposeful Lucide icon and ornamental duplicates are removed.
 - [x] Apply reduced-motion guards to every Motion surface, including side-nav tap feedback, then rerun verification.
-- [ ] Grant the `authenticated` role the minimum required table privileges alongside existing RLS policies, then verify one permitted self-read and one denied cross-user read without persisting test data.
+- [ ] Verify the minimum authenticated-role privileges with one permitted self-read and one denied cross-user read, then document secure cleanup of the temporary validation account.
+- [ ] Create a disposable, no-sensitive-data test account to validate authenticated self-access and cross-user RLS denial, then queue its secure deletion.
+- [ ] Repair the Auth-user-to-profile provisioning trigger, backfill the authorized test profile, and validate readable onboarding after an email/password sign-in.
+- [ ] Prevent duplicate auth hydration from surfacing a false profile-unavailable error after a successful email/password sign-in.

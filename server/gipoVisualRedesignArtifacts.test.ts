@@ -14,6 +14,8 @@ describe("GIPO reference-informed visual shell", () => {
     expect(pagesApp).toContain("useReducedMotion");
     expect(pagesApp).toContain("whileTap={reduceMotion ? undefined");
     expect(pagesApp).not.toContain("Sparkles");
+    expect(pagesApp).not.toContain("function AuthScreen({ onSignedIn");
+    expect(pagesApp).not.toContain("onSignedIn={() => void supabase?.auth.getSession()");
     expect(styles).toContain(".gipo-side-nav");
     expect(styles).toContain(".gipo-mobile-nav");
     expect(styles).toContain("prefers-reduced-motion");
